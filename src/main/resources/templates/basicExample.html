@@ -3,44 +3,22 @@
 
 <head>
       <script src="jquery-2.1.4.min.js"></script>
+      <link rel="stylesheet" href="main.css"/>
 
       <script>
-            $(document).on("click", "#meaningOfLife", function (evt) {
+            $(document).on("click", "#question", function (evt) {
                   $.getJSON("/whatIsTheMeaningOfLife", function (dataFromServer) {
                         data = dataFromServer;
-                        var $meaningOfLifeAnswer = $('#meaningOfLifeAnswer');
+                        var $meaningOfLifeAnswer = $('#answer');
                         $meaningOfLifeAnswer.text(dataFromServer['answer']);
                   });
             });
       </script>
-      <style>
-            #meaningOfLife {
-                  display:inline-block;
-                  color:#444;
-                  border:1px solid #CCC;
-                  background:#DDD;
-                  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
-                  cursor:pointer;
-                  vertical-align:middle;
-                  max-width: 460px;
-                  padding: 5px;
-                  text-align: center;
-                  font-size: 40px;
-            }
-            #meaningOfLife:active {
-                  color:red;
-                  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
-            }
-
-            #meaningOfLifeAnswer {
-                  font-size: 40px;
-            }
-      </style>
 </head>
 
 <div>
-      <div id="meaningOfLife">What is the meaning of life?</div>
-      <div id="meaningOfLifeAnswer"></div>
+      <div id="question">What is the meaning of life?</div>
+      <div id="answer"></div>
 </div>
 
 </html>

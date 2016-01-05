@@ -3,44 +3,24 @@
 
 <head>
     <script src="jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="main.css"/>
 
     <script>
-        $(document).on("click", "#meaningOfLife", function (evt) {
+        var index = 0;
+        $(document).on("click", "#question", function (evt) {
             $.getJSON("/amILucky", function (dataFromServer) {
                 data = dataFromServer;
-                var $meaningOfLifeAnswer = $('#meaningOfLifeAnswer');
-                $meaningOfLifeAnswer.text(dataFromServer['answer']);
+                index++;
+                var $answer = $('#answer');
+                $answer.append('<div>' + index + ': ' + dataFromServer['answer'] + '</div>');
             });
         });
     </script>
-    <style>
-        #meaningOfLife {
-            display:inline-block;
-            color:#444;
-            border:1px solid #CCC;
-            background:#DDD;
-            box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
-            cursor:pointer;
-            vertical-align:middle;
-            max-width: 460px;
-            padding: 5px;
-            text-align: center;
-            font-size: 40px;
-        }
-        #meaningOfLife:active {
-            color:red;
-            box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
-        }
-
-        #meaningOfLifeAnswer {
-            font-size: 40px;
-        }
-    </style>
 </head>
 
 <div>
-    <div id="meaningOfLife">Am I the lucky one?</div>
-    <div id="meaningOfLifeAnswer"></div>
+    <div id="question">Am I the lucky one?</div>
+    <div id="answer"></div>
 </div>
 
 </html>
