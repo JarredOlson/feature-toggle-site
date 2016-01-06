@@ -25,11 +25,13 @@ public class FeatureTogglePercentageService {
         Properties properties = new Properties();
         String propertyValue = null;
         InputStream input = null;
+        double responseValue = 0.0d;
         try {
             String springConfigLocation = environment.getProperty("spring.config.location");
             input = new FileInputStream(new File(springConfigLocation));
             properties.load(input);
             propertyValue = properties.getProperty(name);
+            responseValue = Double.parseDouble(propertyValue);
         } catch (Exception ex) {
             log.error("Could not read property (" + name + ") from property file", ex);
         } finally {
@@ -41,6 +43,6 @@ public class FeatureTogglePercentageService {
                 }
             }
         }
-        return Double.parseDouble(propertyValue);
+        return responseValue;
     }
 }
